@@ -7,6 +7,7 @@ export default function app() {
     choices: ["JavaScript framework'ü", 'JavaScript kütüphanesi'],
     answer: 'JavaScript kütüphanesi.',
     explanation: `Birinin framework diyebilme cüretini gösterdiğini duyarsanız, onu mümkün olduğunca bilgili bir şekilde düzeltmeniz, tercihen yanıtınıza " aslında..." diye başlamanız önemlidir.`,
+    flipped :false,
   })
 
   /* Challenge: 
@@ -20,6 +21,13 @@ export default function app() {
         3. Aynı kalıp sonraki tıklamalar için de tekrarlanmalıdır, böylece kullanıcı kartı istediği kadar ileri geri çevirmeye devam edebilir. 
 */
 
+const [isFlipped, setIsFlipped] = useState(false);
+
+
+const handleCardClick = () => {
+  setIsFlipped(prevIsFlipped => !prevIsFlipped);
+};
+
   return (
     <div>
       <header>
@@ -29,7 +37,8 @@ export default function app() {
 
       {/*-------Aşağıdaki div'i düzenleyin------------*/}
 
-      <div className='flash-card'>
+      <div className={`flash-card ${isFlipped ? 'flipped' : ''}`}
+        onClick={handleCardClick}>
         {/*-------Yukarıdaki div'i düzenleyin------------*/}
 
         <div className='flash-card-inner'>
